@@ -1,0 +1,12 @@
+{
+  "sources": [
+    {
+      "name": "CentreStage Theatre",
+      "parser": "centrestagetheatre",
+      "urls": [
+        "https://www.centrestagetheatre.ca/index.php/now-playing",
+        "https://www.centrestagetheatre.ca/coming-soon"
+      ]
+    }
+  ]
+}
