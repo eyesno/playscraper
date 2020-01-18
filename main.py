@@ -3,8 +3,9 @@ from parsers.centerstagetheatre import parser as parserCST
 
 sources = [ { 'name': 'CentreStage Theatre',
               'parser': 'centrestagetheatre',
-              'nowplaying': 'https://www.centrestagetheatre.ca/index.php/now-playing',
-              'comingsoon': 'https://www.centrestagetheatre.ca/coming-soon' }  
+              'urls': ['https://www.centrestagetheatre.ca/index.php/now-playing',
+                       'https://www.centrestagetheatre.ca/coming-soon']
+            }  
 ]
 
 
@@ -18,13 +19,7 @@ def main():
             collection += parserCST.parseCST( source )
 
     savePlays( collection )
-        
-
-    for play in collection:
-        print( play['title'])
-       # print( play['dates'][0]['date'])  
-       # print( play['subtitle']) 
-       # print( play['description']) 
+       
     
 
 def savePlays( collection ):

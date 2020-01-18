@@ -5,17 +5,15 @@ import requests
 def parseCST( source ):
     plays = [] 
 
-    nowplaying_html = requests.get( source['nowplaying'] ).text
-    comingsoon_html = requests.get( source['comingsoon'] ).text
-    np_soup = BeautifulSoup(nowplaying_html, 'lxml' )
-    plays += parseCSTPosts( source, np_soup )
-    cs_soup = BeautifulSoup(comingsoon_html, 'lxml' )
-    plays += parseCSTPosts( source, cs_soup )
-
+    for url in source['urls']:
+        html = requests.get( url ).text
+        soup = BeautifulSoup(html, 'lxml' )
+        plays += parseCSTPosts( source, soup, url )
+   
     return plays
 
 
-def parseCSTPosts( source, soup ):
+def parseCSTPosts( source, soup, url ):
     plays = []
     blogposts = soup.findAll("div", {"itemprop": "blogPost"})
 
@@ -31,8 +29,8 @@ def parseCSTPosts( source, soup ):
             'dates': dates,
             'subtitle': subtitle,
             'description': description,
-            'link': source['nowplaying'],
-            'lasttweet': time.time()
+            'link': url,
+            'lastupdate': time.time()
         }
 
         plays.append( play )
