@@ -26,6 +26,10 @@ def main():
             if source['parser'] == 'centrestagetheatre':
                 collection += parserCST.parseCST( source )
 
+    #for play in collection:
+        # Is today Monday? See if there is anything playing this week
+
+
     savePlays( collection )
 
     # Login to Twitter App

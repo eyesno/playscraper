@@ -38,6 +38,43 @@ def parseCSTPosts( source, soup, url ):
     return plays
 
 def getDates( str ):
-    dates = [ { 'date': str } ] 
+    dates = [] 
+
+    tokens = str.split()
+    currentMonth = ''
+
+    for token in tokens:
+        token = token.strip( ' ,')
+        #print( f'Looking at {token}')
+        
+        if token.lower()[0:3] == 'jan':
+            currentMonth = 'January'
+        elif token.lower()[0:3] == 'feb':
+            currentMonth = 'February'
+        elif token.lower()[0:3] == 'mar':
+            currentMonth = 'March'
+        elif token.lower()[0:3] == 'apr':
+            currentMonth = 'April'
+        elif token.lower()[0:3] == 'may':
+            currentMonth = 'May'
+        elif token.lower()[0:3] == 'jun':
+            currentMonth = 'June'
+        elif token.lower()[0:3] == 'jul':
+            currentMonth = 'July'
+        elif token.lower()[0:3] == 'aug':
+            currentMonth = 'July'
+        elif token.lower()[0:3] == 'sep':
+            currentMonth = 'September'
+        elif token.lower()[0:3] == 'oct':
+            currentMonth = 'October'
+        elif token.lower()[0:3] == 'nov':
+            currentMonth = 'November'
+        elif token.lower()[0:3] == 'dec'   :
+            currentMonth = 'December'
+        else:
+            if token.isnumeric() and currentMonth != '':
+                dates.append( f'{currentMonth} {token}')
+                #print( f"There is a show on {currentMonth} {token}")
+        
     # TODO: Find a way to make this intelligent
     return dates
