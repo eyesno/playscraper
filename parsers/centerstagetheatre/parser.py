@@ -30,7 +30,7 @@ def parseCSTPosts( source, soup, url ):
             'subtitle': subtitle,
             'description': description,
             'link': url,
-            'lastupdate': time.time()
+            'posted': False
         }
 
         plays.append( play )
